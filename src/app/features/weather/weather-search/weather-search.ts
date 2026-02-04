@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { validate } from '@angular/forms/signals';
+import { WeatherService } from '../../../core/services/weather.service';
 
 @Component({
   selector: 'app-weather-search',
@@ -15,16 +16,12 @@ export class WeatherSearch {
   loading = signal(false);
   error = signal<string | null>(null);
 
+  private readonly _weatherService = inject(WeatherService);
+
   onSubmit() {
     if (!this.searchForm.value.city) return;
 
     const city = this.searchForm.value.city!;
-    this.error.set(null);
-    this.loading.set(true);
-
-    setTimeout(() => {
-      this.loading.set(false);
-      console.log('City searched: ', city);
-    }, 1000);
+    this._weatherService.getWeather(city);
   }
 }
