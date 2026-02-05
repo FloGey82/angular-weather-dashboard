@@ -31,6 +31,9 @@ the **new control flow syntax**.
 ![Weather](screenshots/weather.png)
 
 ## Run locally
+1. Copy `src/environments/environment.example.ts` to `src/environments/environment.ts`
+2. Add your OpenWeatherMap API key
+
 ```bash
 npm install
 ng serve

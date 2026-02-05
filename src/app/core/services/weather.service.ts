@@ -16,7 +16,7 @@ export class WeatherService {
     this.loading.set(true);
     this.error.set(null);
 
-    const url = `${environments.openWeatherApiUrl}/weather?q=${city}&appid=${environments.openWeatherApiKey}`;
+    const url = `${environments.openWeatherApiUrl}/weather?q=${city}&appid=${environments.openWeatherApiKey}&units=metric`;
 
     this._http
       .get<WeatherResponse>(url)
