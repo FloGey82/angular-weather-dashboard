@@ -2,11 +2,13 @@ import { inject, Injectable, signal } from '@angular/core';
 import { WeatherResponse } from '../models/weather.model';
 import { HttpClient } from '@angular/common/http';
 import { environments } from '../../../environments/environments';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, finalize, tap, throwError } from 'rxjs';
+import { forecastItem } from '../models/forecast.models';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
   currentWeather = signal<WeatherResponse | null>(null);
+  forecast = signal<forecastItem | null>(null);
   loading = signal(false);
   error = signal<string | null>(null);
 
@@ -23,10 +25,44 @@ export class WeatherService {
       .pipe(
         tap((res) => this.currentWeather.set(res)),
         catchError((err) => {
-          this.error.set('City not found or API error');
+          catchError((err) => {
+            if (err.status === 404) {
+              this.error.set('City not found');
+            } else {
+              this.error.set('API error');
+            }
+            return throwError(() => err);
+          });
           return throwError(() => err);
         }),
+        finalize(() => this.loading.set(false)),
       )
-      .subscribe({ next: () => this.loading.set(false), error: () => this.loading.set(false) });
+      .subscribe();
+  }
+
+  getForecast(city: string) {
+    this.loading.set(true);
+    this.error.set(null);
+
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${environments.openWeatherApiKey}&units=metric`;
+
+    this._http
+      .get<forecastItem>(url)
+      .pipe(
+        tap((forecastItem) => this.forecast.set(forecastItem)),
+        catchError((err) => {
+          catchError((err) => {
+            if (err.status === 404) {
+              this.error.set('City not found');
+            } else {
+              this.error.set('API error');
+            }
+            return throwError(() => err);
+          });
+          return throwError(() => err);
+        }),
+        finalize(() => this.loading.set(false)),
+      )
+      .subscribe();
   }
 }
