@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { validate } from '@angular/forms/signals';
@@ -23,5 +23,6 @@ export class WeatherSearch {
 
     const city = this.searchForm.value.city!;
     this._weatherService.getWeather(city);
+    this._weatherService.getForecast(city);
   }
 }

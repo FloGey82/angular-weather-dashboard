@@ -1,0 +1,8 @@
+@for (weather of forecast()?.list; track weather) {
+  <div class="forecast">
+    <p class="day">{{ weather.dt_txt | date: 'EEE, dd.MM' }}</p>
+    <img [src]="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'" />
+    <p>🌡️ {{ weather.main.temp }}°C</p>
+    <p>{{ weather.weather[0].description }}</p>
+  </div>
+}

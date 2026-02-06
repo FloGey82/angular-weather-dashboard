@@ -1,0 +1,12 @@
+.forecast {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+}
+.day {
+  flex: 0 0 100px;
+  text-align: center;
+  background: #f0f0f0;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}

@@ -3,12 +3,12 @@ import { WeatherResponse } from '../models/weather.model';
 import { HttpClient } from '@angular/common/http';
 import { environments } from '../../../environments/environments';
 import { catchError, finalize, tap, throwError } from 'rxjs';
-import { forecastItem } from '../models/forecast.models';
+import { forecastItem, forecastResponse } from '../models/forecast.models';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
   currentWeather = signal<WeatherResponse | null>(null);
-  forecast = signal<forecastItem | null>(null);
+  forecast = signal<forecastResponse | null>(null);
   loading = signal(false);
   error = signal<string | null>(null);
 
@@ -47,9 +47,9 @@ export class WeatherService {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${environments.openWeatherApiKey}&units=metric`;
 
     this._http
-      .get<forecastItem>(url)
+      .get<forecastResponse>(url)
       .pipe(
-        tap((forecastItem) => this.forecast.set(forecastItem)),
+        tap((forecastResponse) => this.forecast.set(forecastResponse)),
         catchError((err) => {
           catchError((err) => {
             if (err.status === 404) {
