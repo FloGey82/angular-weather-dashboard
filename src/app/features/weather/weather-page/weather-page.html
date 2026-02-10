@@ -1,7 +1,21 @@
-<section class="weather-page">
-  <h1>🌤️ Weather App</h1>
-  <p>Search for a city to get current weather information.</p>
-  <app-weather-search />
-  <app-weather-card [weather]="weatherService.currentWeather()" />
-  <app-forecast-card [forecast]="weatherService.forecast()"></app-forecast-card>
-</section>
+<main>
+  <section>
+    <h1>🌤 Weather App</h1>
+
+    <app-weather-search></app-weather-search>
+
+    @if (weatherService.loading()) {
+      <p class="text-center text-gray-500">Loading...</p>
+    }
+
+    @if (weatherService.error()) {
+      <p class="text-center text-red-500">
+        {{ weatherService.error() }}
+      </p>
+    }
+
+    <app-weather-card [weather]="weatherService.currentWeather()"> </app-weather-card>
+
+    <app-forecast-card [forecast]="weatherService.forecast()"> </app-forecast-card>
+  </section>
+</main>

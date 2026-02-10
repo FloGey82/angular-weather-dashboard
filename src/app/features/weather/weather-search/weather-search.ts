@@ -9,7 +9,7 @@ import { WeatherService } from '../../../core/services/weather.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './weather-search.html',
-  styleUrl: './weather-search.scss',
+  styleUrl: './weather-search.css',
 })
 export class WeatherSearch {
   searchForm = new FormGroup({ city: new FormControl('', Validators.required) });

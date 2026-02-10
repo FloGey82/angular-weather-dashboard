@@ -6,7 +6,7 @@ import { DecimalPipe } from '@angular/common';
   selector: 'app-weather-card',
   imports: [DecimalPipe],
   templateUrl: './weather-card.html',
-  styleUrl: './weather-card.scss',
+  styleUrl: './weather-card.css',
   standalone: true,
 })
 export class WeatherCard {
