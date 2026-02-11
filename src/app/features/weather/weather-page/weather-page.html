@@ -1,8 +1,8 @@
-<main>
-  <section>
+<main class="min-h-screen bg-gradient-to-br from-sky-100 to-blue-200 flex items-center justify-center">
+  <section class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-6">
     <h1>🌤 Weather App</h1>
 
-    <app-weather-search></app-weather-search>
+    <app-weather-search/>
 
     @if (weatherService.loading()) {
       <p class="text-center text-gray-500">Loading...</p>
@@ -14,8 +14,8 @@
       </p>
     }
 
-    <app-weather-card [weather]="weatherService.currentWeather()"> </app-weather-card>
-
-    <app-forecast-card [forecast]="weatherService.forecast()"> </app-forecast-card>
+    <app-weather-card [weather]="weatherService.currentWeather()"/>
+    <app-forecast-card [forecast]="weatherService.forecast()"/>
+    
   </section>
 </main>

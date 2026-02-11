@@ -1,9 +1,14 @@
 @if (weather()) {
-  <div class="card">
-    <h2>{{ weather()?.name }}</h2>
-    <p>{{ weather()?.weather?.[0]?.description }}</p>
-    <p>🌡️ {{ weather()?.main?.temp | number:'1.1-1' }} °C</p>
-    <p>💧 Humidity: {{ weather()?.main?.humidity }}%</p>
-    <img [src]="'http://openweathermap.org/img/wn/' + weather()?.weather?.[0]?.icon + '@2x.png'" />
+  <div class="mt-4 bg-sky-50 rounded-xl p-4 text-center space-y-2">
+    <h2 class="text-xl font-medium text-gray-800">{{ weather()?.name }}</h2>
+    <img
+      [src]="'http://openweathermap.org/img/wn/' + weather()?.weather?.[0]?.icon + '@2x.png'"
+      class="mx-auto"
+    />
+    <p class="text-4xl font-bold text-sky-600">
+      🌡️ {{ weather()?.main?.temp | number: '1.1-1' }} °C
+    </p>
+    <p class="text-gray-600 capitalize">{{ weather()?.weather?.[0]?.description }}</p>
+    <p class="text-sm text-gray-500">💧 Humidity: {{ weather()?.main?.humidity }}%</p>
   </div>
 }

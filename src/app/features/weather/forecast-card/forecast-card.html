@@ -1,10 +1,11 @@
 @if (forecast()) {
-  @for (weather of forecast()?.list; track weather) {
-    <div class="forecast">
-      <p class="day">{{ weather.dt_txt | date: 'EEEE, dd.MM' }}</p>
-      <img [src]="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'" />
-      <p>🌡️ {{ weather.main.temp | number: '1.1-1' }}°C</p>
-      <p>{{ weather.weather[0].description }}</p>
-    </div>
-  }
+  <div class="flex gap-3 overflow-x-auto pt-4">
+    @for (weather of forecast()?.list; track weather) {
+      <div class="bg-white rounded-lg shadow p-3 min-w-[90px] text-center">
+        <p class="text-sm text-gray-500">{{ weather.dt_txt | date: 'EEEE, h:mm a' }}</p>
+        <img [src]="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'" />
+        <p class="font-semibold text-gray-700">🌡️ {{ weather.main.temp | number: '1.1-1' }}°C</p>
+      </div>
+    }
+  </div>
 }

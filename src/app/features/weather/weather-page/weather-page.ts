@@ -9,7 +9,6 @@ import { ForecastCard } from "../forecast-card/forecast-card";
   standalone: true,
   imports: [WeatherSearch, WeatherCard, ForecastCard],
   templateUrl: './weather-page.html',
-  styleUrl: './weather-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherPage {
