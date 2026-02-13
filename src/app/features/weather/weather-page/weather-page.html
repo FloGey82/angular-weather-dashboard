@@ -1,21 +1,46 @@
-<main class="min-h-screen bg-gradient-to-br from-sky-100 to-blue-200 flex items-center justify-center">
-  <section class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-6">
-    <h1>🌤 Weather App</h1>
+<main
+  class="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-100 to-blue-200 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300"
+>
+  <section
+    class="w-full max-w-md p-6 space-y-6 rounded-2xl shadow-xl bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300"
+  >
+     <!-- Header -->
+  <div class="flex items-center justify-between">
+    <h1 class="text-2xl font-semibold flex items-center gap-2">
+      🌤 Weather App
+    </h1>
 
-    <app-weather-search/>
+    <button
+      (click)="toggleNightMode()"
+      class="
+        relative inline-flex h-6 w-11 items-center rounded-full
+        bg-gray-300 dark:bg-sky-600
+        transition-colors duration-300
+      "
+    >
+      <span
+        class="
+          inline-block h-4 w-4 transform rounded-full bg-white
+          transition-transform duration-300
+          translate-x-1 dark:translate-x-6
+        "
+      ></span>
+    </button>
+  </div>
+    <app-weather-search />
 
     @if (weatherService.loading()) {
-      <p class="text-center text-gray-500">Loading...</p>
+      <p class="text-center text-gray-500 dark:text-gray-400">⏳ Loading...</p>
     }
 
     @if (weatherService.error()) {
-      <p class="text-center text-red-500">
+      <p class="text-center text-red-500 dark:text-red-400">
         {{ weatherService.error() }}
       </p>
     }
 
-    <app-weather-card [weather]="weatherService.currentWeather()"/>
-    <app-forecast-card [forecast]="weatherService.forecast()"/>
-    
+    <app-weather-card [weather]="weatherService.currentWeather()" />
+
+    <app-forecast-card [forecast]="weatherService.forecast()" />
   </section>
 </main>

@@ -1,10 +1,21 @@
 @if (forecast()) {
-  <div class="flex gap-3 overflow-x-auto pt-4">
+  <div class="flex gap-3 overflow-x-auto pt-4 pb-2 scrollbar-hide">
     @for (weather of forecast()?.list; track weather) {
-      <div class="bg-white rounded-lg shadow p-3 min-w-[90px] text-center">
-        <p class="text-sm text-gray-500">{{ weather.dt_txt | date: 'EEEE, h:mm a' }}</p>
-        <img [src]="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'" />
-        <p class="font-semibold text-gray-700">🌡️ {{ weather.main.temp | number: '1.1-1' }}°C</p>
+      <div
+        class="min-w-[100px] p-3 rounded-xl text-center bg-white dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 transition-colors duration-300"
+      >
+        <p class="text-xs text-gray-500 dark:text-gray-400">
+          {{ weather.dt_txt | date: 'EEE, HH:mm' }}
+        </p>
+
+        <img
+          class="mx-auto"
+          [src]="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'"
+        />
+
+        <p class="font-semibold text-gray-800 dark:text-gray-100">
+          🌡️ {{ weather.main.temp | number: '1.1-1' }}°C
+        </p>
       </div>
     }
   </div>

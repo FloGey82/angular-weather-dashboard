@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { WeatherSearch } from '../weather-search/weather-search';
 import { WeatherCard } from '../weather-card/weather-card';
 import { WeatherService } from '../../../core/services/weather.service';
-import { ForecastCard } from "../forecast-card/forecast-card";
+import { ForecastCard } from '../forecast-card/forecast-card';
 
 @Component({
   selector: 'app-weather-page',
@@ -13,4 +13,14 @@ import { ForecastCard } from "../forecast-card/forecast-card";
 })
 export class WeatherPage {
   weatherService = inject(WeatherService);
+
+  nightMode = signal(false);
+
+  toggleNightMode() {
+    this.nightMode.set(!this.nightMode());
+
+    const html = document.documentElement;
+    const isDark = this.nightMode();
+    html.classList.toggle('dark',isDark)
+  }
 }
