@@ -1,6 +1,6 @@
 # Angular Weather App
 
-A modern and lightweight weather application built with **Angular 21**, showcasing
+A modern and lightweight weather dashboard built with **Angular 21**, showcasing
 the latest Angular features such as **standalone components**, **signals**, and
 the **new control flow syntax**.
 
@@ -17,8 +17,8 @@ the **new control flow syntax**.
 - Angular 21
 - TypeScript
 - RxJS
-- SCSS
 - OpenWeatherMap API
+- TailwindCSS v4
 
 ## Architecture
 - Modern standalone component approach (no NgModules)
@@ -27,8 +27,8 @@ the **new control flow syntax**.
 - Signal-based state management for improved performance and clarity
 
 ## Screenshots
-![Search](screenshots/search.png)
-![Weather](screenshots/weather.png)
+![Light](docs/light.png)
+![Dark](docs/dark.png)
 
 ## Run locally
 1. Copy `src/environments/environment.example.ts` to `src/environments/environment.ts`
