@@ -24,17 +24,17 @@ export class WeatherService {
       .get<WeatherResponse>(url)
       .pipe(
         tap((res) => this.currentWeather.set(res)),
+
         catchError((err) => {
-          catchError((err) => {
-            if (err.status === 404) {
-              this.error.set('City not found');
-            } else {
-              this.error.set('API error');
-            }
-            return throwError(() => err);
-          });
+          if (err.status === 404) {
+            this.error.set('City not found');
+          } else {
+            this.error.set('API error');
+          }
+
           return throwError(() => err);
         }),
+
         finalize(() => this.loading.set(false)),
       )
       .subscribe();
@@ -51,14 +51,11 @@ export class WeatherService {
       .pipe(
         tap((forecastResponse) => this.forecast.set(forecastResponse)),
         catchError((err) => {
-          catchError((err) => {
-            if (err.status === 404) {
-              this.error.set('City not found');
-            } else {
-              this.error.set('API error');
-            }
-            return throwError(() => err);
-          });
+          if (err.status === 404) {
+            this.error.set('City not found');
+          } else {
+            this.error.set('API error');
+          }
           return throwError(() => err);
         }),
         finalize(() => this.loading.set(false)),

@@ -22,14 +22,13 @@
     @if (this.weatherService.loading()) {
       <app-weather-skeleton />
       <app-forecast-skeleton />
-    } @else {
-      <app-weather-card [weather]="weatherService.currentWeather()" />
-      <app-forecast-card [forecast]="weatherService.forecast()" />
-    }
-    @if (weatherService.error()) {
+    } @else if (weatherService.error()) {
       <p class="text-center text-red-500 dark:text-red-400">
         {{ weatherService.error() }}
       </p>
+    } @else {
+      <app-weather-card [weather]="weatherService.currentWeather()" />
+      <app-forecast-card [forecast]="weatherService.forecast()" />
     }
   </section>
 </main>
