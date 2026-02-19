@@ -2,8 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { WeatherResponse } from '../models/weather.model';
 import { HttpClient } from '@angular/common/http';
 import { environments } from '../../../environments/environments';
-import { catchError, finalize, tap, throwError } from 'rxjs';
-import { forecastItem, forecastResponse } from '../models/forecast.models';
+import { catchError, EMPTY, finalize, tap, throwError } from 'rxjs';
+import { forecastResponse } from '../models/forecast.models';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
@@ -18,7 +18,7 @@ export class WeatherService {
     this.loading.set(true);
     this.error.set(null);
 
-    const url = `${environments.openWeatherApiUrl}/weather?q=${city}&appid=${environments.openWeatherApiKey}&units=metric`;
+    const url = `${environments.openWeatherDataApiUrl}/weather?q=${city}&appid=${environments.openWeatherApiKey}&units=metric`;
 
     this._http
       .get<WeatherResponse>(url)
@@ -56,7 +56,7 @@ export class WeatherService {
           } else {
             this.error.set('API error');
           }
-          return throwError(() => err);
+          return EMPTY;
         }),
         finalize(() => this.loading.set(false)),
       )

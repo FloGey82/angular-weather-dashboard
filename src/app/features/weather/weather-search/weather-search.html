@@ -1,20 +1,37 @@
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex gap-2">
-  <input
-    formControlName="city"
-    placeholder="Enter city name"
-    type="text"
-    class="flex-1 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400 dark:focus:ring-sky-500 transition-colors"
-  />
+<div class="relative w-full">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex gap-2">
+    <input
+      formControlName="city"
+      placeholder="Enter city name"
+      (input)="onCityInput()"
+      type="text"
+      class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400"
+      autocomplete="off"
+    />
+    @if (cityResponse().length > 0) {
+      <ul
+        class="absolute left-0 right-0 top-full mt-1 z-20 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-48 overflow-y-auto"
+      >
+        @for (city of cityResponse(); track $index) {
+          <li
+            (click)="selectCity(city.name)"
+            class="px-3 py-2 hover:bg-sky-100 dark:hover:bg-sky-600 cursor-pointer"
+          >
+            {{ city.name }}, {{ city.country }}
+          </li>
+        }
+      </ul>
+    }
 
-  <button
-    type="submit"
-    [disabled]="loading() || searchForm.invalid"
-    class="bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 transition-colors"
-  >
-    Search
-  </button>
-</form>
-
+    <button
+      type="submit"
+      [disabled]="loading() || searchForm.invalid"
+      class="bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 transition-colors"
+    >
+      Search
+    </button>
+  </form>
+</div>
 <div class="mt-4 text-center">
   @if (loading()) {
     <p class="text-gray-500 dark:text-gray-400">⏳ Loading...</p>
