@@ -6,7 +6,6 @@ import { DatePipe, DecimalPipe } from '@angular/common';
   selector: 'app-forecast-card',
   imports: [DatePipe, DecimalPipe],
   templateUrl: './forecast-card.html',
-  styleUrl: './forecast-card.css',
   standalone: true,
 })
 export class ForecastCard {
