@@ -7,15 +7,7 @@
     <!-- Header -->
     <div class="flex items-center justify-between">
       <h1 class="text-2xl font-semibold flex items-center gap-2">🌤 Weather App</h1>
-
-      <button
-        (click)="toggleNightMode()"
-        class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-300 dark:bg-sky-600 transition-colors duration-300"
-      >
-        <span
-          class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300 translate-x-1 dark:translate-x-6"
-        ></span>
-      </button>
+      <app-dark-mode-toggle />
     </div>
     <app-weather-search />
 
