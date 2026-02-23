@@ -29,6 +29,7 @@ the **new control flow syntax**.
 ## Screenshots
 ![Light](docs/light.png)
 ![Dark](docs/dark.png)
+![Demo](docs/demo.gif)
 
 ## Run locally
 1. Copy `src/environments/environment.example.ts` to `src/environments/environment.ts`
