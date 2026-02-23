@@ -7,6 +7,25 @@
     <!-- Header -->
     <div class="flex items-center justify-between">
       <h1 class="text-2xl font-semibold flex items-center gap-2">🌤 Weather App</h1>
+      <div class="flex bg-gray-200 dark:bg-gray-700 rounded-lg p-1 text-sm">
+  <button
+    (click)="weatherService.setTempUnit('C')"
+    class="px-3 py-1 rounded-md"
+    [class.bg-white]="weatherService.temperatureUnit() === 'C'"
+    [class.dark:bg-gray-900]="weatherService.temperatureUnit() === 'C'"
+  >
+    °C
+  </button>
+
+  <button
+    (click)="weatherService.setTempUnit('F')"
+    class="px-3 py-1 rounded-md"
+    [class.bg-white]="weatherService.temperatureUnit() === 'F'"
+    [class.dark:bg-gray-900]="weatherService.temperatureUnit() === 'F'"
+  >
+    °F
+  </button>
+</div>
       <app-dark-mode-toggle />
     </div>
     <app-weather-search />

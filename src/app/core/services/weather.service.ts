@@ -5,12 +5,17 @@ import { environments } from '../../../environments/environments';
 import { catchError, EMPTY, finalize, tap, throwError } from 'rxjs';
 import { forecastResponse } from '../models/forecast.models';
 
+export type tempUnit = 'C' | 'F';
+
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
   currentWeather = signal<WeatherResponse | null>(null);
   forecast = signal<forecastResponse | null>(null);
+
   loading = signal(false);
   error = signal<string | null>(null);
+
+  temperatureUnit = signal<tempUnit>('C');
 
   private _http = inject(HttpClient);
 
@@ -61,5 +66,16 @@ export class WeatherService {
         finalize(() => this.loading.set(false)),
       )
       .subscribe();
+  }
+  setTempUnit(unit: tempUnit) {
+    this.temperatureUnit.set(unit);
+  }
+
+  displayTemperature(tempCelsius: number) {
+    if (this.temperatureUnit() === 'C') {
+      return tempCelsius;
+    }
+
+    return ((tempCelsius ?? 0) * 9) / 5 + 32;
   }
 }

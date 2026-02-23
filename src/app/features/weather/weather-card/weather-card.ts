@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { WeatherResponse } from '../../../core/models/weather.model';
 import { DecimalPipe } from '@angular/common';
+import { WeatherService } from '../../../core/services/weather.service';
 
 @Component({
   selector: 'app-weather-card',
@@ -10,4 +11,5 @@ import { DecimalPipe } from '@angular/common';
 })
 export class WeatherCard {
   weather = input<WeatherResponse | null>(null);
+  weatherService = inject(WeatherService);
 }

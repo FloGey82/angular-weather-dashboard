@@ -1,14 +1,20 @@
-@if (weather()) {
+@if (weather(); as w) {
   <div class="mt-4 bg-sky-50 dark:bg-gray-800 rounded-xl p-4 text-center space-y-2">
-    <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200" >{{ weather()?.name }}</h2>
+    <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">{{ w.name }}</h2>
     <img
-      [src]="'http://openweathermap.org/img/wn/' + weather()?.weather?.[0]?.icon + '@2x.png'"
+      [src]="'http://openweathermap.org/img/wn/' + w.weather[0].icon + '@2x.png'"
       class="mx-auto"
     />
     <p class="text-4xl font-bold text-sky-600">
-      🌡️ {{ weather()?.main?.temp | number: '1.1-1' }} °C
+      🌡️ {{ weatherService.displayTemperature(w.main.temp) | number: '1.1-1' }} °{{
+        weatherService.temperatureUnit()
+      }}
     </p>
-    <p class="text-gray-600 dark:text-gray-400 capitalize">{{ weather()?.weather?.[0]?.description }}</p>
-    <p class="text-sm text-gray-500 dark:text-gray-300">💧 Humidity: {{ weather()?.main?.humidity }}%</p>
+    <p class="text-gray-600 dark:text-gray-400 capitalize">
+      {{ w.weather[0].description }}
+    </p>
+    <p class="text-sm text-gray-500 dark:text-gray-300">
+      💧 Humidity: {{ w.main.humidity }}%
+    </p>
   </div>
 }
