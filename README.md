@@ -5,6 +5,7 @@ the latest Angular features such as **standalone components**, **signals**, and
 the **new control flow syntax**.
 
 ## Features
+
 - Search current weather by city name
 - Integration with the OpenWeatherMap API
 - Reactive state management using Angular Signals
@@ -14,6 +15,7 @@ the **new control flow syntax**.
 - Fully responsive layout
 
 ## Tech Stack
+
 - Angular 21
 - TypeScript
 - RxJS
@@ -21,20 +23,35 @@ the **new control flow syntax**.
 - TailwindCSS v4
 
 ## Architecture
+
 - Modern standalone component approach (no NgModules)
 - Feature-based project structure
 - Dedicated services for data access and business logic
 - Signal-based state management for improved performance and clarity
 
 ## Screenshots
-![Light](docs/light.png)
-![Dark](docs/dark.png)
-![Demo](docs/demo.gif)
+
+Light Mode:  
+![Light Mode](docs/light.png)
+
+Dark Mode:  
+![Dark Mode](docs/dark.png)
+
+## Demo
+
+![Weather App Demo](docs/demo.gif)
+
+## Lighthouse Audit
+
+All scores are 100% ✅
+![LighthouseScore](docs/lightHouse.png)
 
 ## Run locally
+
 1. Copy `src/environments/environment.example.ts` to `src/environments/environment.ts`
 2. Add your OpenWeatherMap API key
 
 ```bash
 npm install
 ng serve
+```

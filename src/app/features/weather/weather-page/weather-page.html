@@ -8,7 +8,7 @@
     <div class="flex items-center justify-between">
       <h1 class="text-2xl font-semibold flex items-center gap-2">🌤 Weather App</h1>
       <div class="flex bg-gray-200 dark:bg-gray-700 rounded-lg p-1 text-sm">
-  <button
+  <button id="setTempUnitC" aria-label="setTempUnitC"
     (click)="weatherService.setTempUnit('C')"
     class="px-3 py-1 rounded-md"
     [class.bg-white]="weatherService.temperatureUnit() === 'C'"
@@ -17,7 +17,7 @@
     °C
   </button>
 
-  <button
+  <button id="setTempUnitF" aria-label="setTempUnitF"
     (click)="weatherService.setTempUnit('F')"
     class="px-3 py-1 rounded-md"
     [class.bg-white]="weatherService.temperatureUnit() === 'F'"
